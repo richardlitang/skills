@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-skills_dir="$repo_root/skills"
+skills_dir="$repo_root/codex"
 
 if [[ ! -d "$skills_dir" ]]; then
   echo "Missing skills directory: $skills_dir" >&2
@@ -10,6 +10,11 @@ if [[ ! -d "$skills_dir" ]]; then
 fi
 
 failures=0
+
+if grep -R -I -n -i -E 'buildpass|build pass|build-pass' "$skills_dir"; then
+  echo "FAIL: Buildpass-derived content is not allowed in this repository" >&2
+  failures=$((failures + 1))
+fi
 
 while IFS= read -r -d '' skill_dir; do
   skill_name="$(basename "$skill_dir")"

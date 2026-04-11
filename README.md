@@ -1,8 +1,8 @@
-# Codex Skills
+# Skills
 
-A curated set of Codex skills for software delivery, Android development, SEO analysis, UX writing, debugging, and review workflows.
+A curated set of agent skills, with the current collection focused on Codex workflows for software delivery, Android development, SEO analysis, UX writing, debugging, and review.
 
-These skills are designed as compact operating guides for coding agents. Each skill keeps the always-loaded trigger metadata small, then uses `SKILL.md`, references, scripts, and assets only when the task needs them.
+These skills are compact operating guides for coding agents. Each skill keeps the always-loaded trigger metadata small, then uses `SKILL.md`, references, scripts, and assets only when the task needs them.
 
 ## Highlights
 
@@ -12,10 +12,20 @@ These skills are designed as compact operating guides for coding agents. Each sk
 - **SEO and GEO**: `seo`, `seo-audit`, `seo-page`, `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, and focused helpers for images, sitemaps, hreflang, programmatic SEO, plans, and competitor pages
 - **Domain workflows**: PumpingChops content polish and QA skills for repeatable affiliate/content operations
 
+## Provenance
+
+This repository is a curated copy of locally maintained user skills from `~/.codex/skills`, reorganized for public use under `codex/`.
+
+The skills were inspired by recurring work patterns from personal projects, especially Android app development, content QA, SEO audits, code review, debugging, UX writing, and agent workflow design. They also draw on public documentation and commonly accepted practices from the relevant ecosystems, including Android and Jetpack Compose guidance, Google Search Central and Schema.org SEO references, Core Web Vitals guidance, WCAG accessibility guidance, and product-writing heuristics from UX writing practice.
+
+System-provided Codex skills were not copied into this repo. Buildpass skills or Buildpass-derived content are intentionally excluded.
+
+See [ATTRIBUTION.md](ATTRIBUTION.md) for the source-of-inspiration summary.
+
 ## Layout
 
 ```text
-skills/
+codex/
   <skill-name>/
     SKILL.md
     references/
@@ -33,14 +43,14 @@ Copy the skills you want into your Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R skills/<skill-name> ~/.codex/skills/
+cp -R codex/<skill-name> ~/.codex/skills/
 ```
 
 To install all curated skills:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R skills/* ~/.codex/skills/
+cp -R codex/* ~/.codex/skills/
 ```
 
 Restart Codex after installing or updating skills so the metadata is reloaded.
@@ -54,6 +64,7 @@ Run the lightweight repository check:
 ```
 
 The validator checks that every skill directory has `SKILL.md`, YAML frontmatter fences, and required `name` and `description` fields.
+It also fails if Buildpass references are introduced.
 
 ## Skill Index
 
