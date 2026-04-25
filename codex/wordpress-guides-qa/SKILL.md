@@ -1,11 +1,11 @@
 ---
-name: pumpingchops-guides-qa
-description: Run PumpingChops guide-page QA for informational content quality, on-page SEO, trust signals, and publish readiness. Use for non-roundup how-to/explainer/FAQ/troubleshooting pages where intent coverage, structure, internal linking, and factual clarity matter more than product ranking.
+name: wordpress-guides-qa
+description: Run WordPress guide-page QA for informational content quality, on-page SEO, trust signals, and publish readiness. Use for non-roundup how-to/explainer/FAQ/troubleshooting pages where intent coverage, structure, internal linking, and factual clarity matter more than product ranking.
 ---
 
-# PumpingChops Guides QA
+# WordPress Guides QA
 
-Use this skill to evaluate and improve PumpingChops informational guide posts before or after publish.
+Use this skill to evaluate and improve WordPress informational guide posts before or after publish.
 
 This is a report-first skill. Do not edit content unless the user asks.
 
@@ -23,7 +23,7 @@ Do not use this skill for:
 - `/best-*` listicles/roundups
 - product ranking/comparison posts with primary commercial intent
 
-If the URL is `/best-*`, use `pumpingchops-page-qa` (and content polish/review workflow) instead.
+If the URL is `/best-*`, use `wordpress-page-qa` (and content polish/review workflow) instead.
 
 ## Core Principle
 - Validate baseline issues with deterministic checks first (`scripts/page_qa.py`)

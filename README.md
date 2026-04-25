@@ -10,13 +10,13 @@ These skills are compact operating guides for coding agents. Each skill keeps th
 - **Android**: `android-build`, `compose-ui`, `localizing-android`, `tdd-android`
 - **Product and interface work**: `frontend-design`, `interface-design`, `ux-writing-skill`, `brainstorming`, `grill-me`
 - **SEO and GEO**: `seo`, `seo-audit`, `seo-page`, `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, and focused helpers for images, sitemaps, hreflang, programmatic SEO, plans, and competitor pages
-- **Domain workflows**: PumpingChops content polish and QA skills for repeatable affiliate/content operations
+- **WordPress content workflows**: editorial polish and QA skills for repeatable guide, review, and affiliate-content operations
 
 ## Provenance
 
 This repository is a curated copy of locally maintained user skills from `~/.codex/skills`, reorganized for public use under `codex/`.
 
-The skills were inspired by recurring work patterns from personal projects, especially Android app development, content QA, SEO audits, code review, debugging, UX writing, and agent workflow design. They also draw on public documentation and commonly accepted practices from the relevant ecosystems, including Android and Jetpack Compose guidance, Google Search Central and Schema.org SEO references, Core Web Vitals guidance, WCAG accessibility guidance, and product-writing heuristics from UX writing practice.
+The skills were inspired by recurring work patterns from personal projects, especially Android app development, WordPress content QA, SEO audits, code review, debugging, UX writing, and agent workflow design. They also draw on public documentation and commonly accepted practices from the relevant ecosystems, including Android and Jetpack Compose guidance, Google Search Central and Schema.org SEO references, Core Web Vitals guidance, WCAG accessibility guidance, and product-writing heuristics from UX writing practice.
 
 System-provided Codex skills were not copied into this repo. Buildpass skills or Buildpass-derived content are intentionally excluded.
 
@@ -64,7 +64,7 @@ Run the lightweight repository check:
 ```
 
 The validator checks that every skill directory has `SKILL.md`, YAML frontmatter fences, and required `name` and `description` fields.
-It also fails if Buildpass references are introduced.
+It also fails if Buildpass references are introduced under `codex/`.
 
 ## Skill Index
 
@@ -80,9 +80,6 @@ It also fails if Buildpass references are introduced.
 | `interface-design` | Design dense, operational app interfaces and dashboards. |
 | `localizing-android` | Manage Android strings, translations, and localization audits. |
 | `planning-features` | Break multi-step implementation work into concrete execution plans. |
-| `pumpingchops-content-polish` | Polish PumpingChops review and guide copy while preserving factual integrity. |
-| `pumpingchops-guides-qa` | QA informational PumpingChops guide pages for publish readiness. |
-| `pumpingchops-page-qa` | QA PumpingChops review and roundup pages using deterministic and rendered checks. |
 | `reviewing-code` | Perform spec-first and quality-focused code reviews. |
 | `seo` | Run broad SEO analysis, including technical, content, schema, and GEO checks. |
 | `seo-audit` | Full-site SEO audit workflow with specialist decomposition. |
@@ -101,3 +98,6 @@ It also fails if Buildpass references are introduced.
 | `tdd-android` | Apply Android TDD for behavior changes. |
 | `ux-writing-skill` | Write and audit product microcopy, errors, empty states, and UX content. |
 | `verifying-completion` | Verify work before claiming it is complete or ready. |
+| `wordpress-content-polish` | Polish WordPress review and guide copy while preserving factual integrity. |
+| `wordpress-guides-qa` | QA informational WordPress guide pages for publish readiness. |
+| `wordpress-page-qa` | QA WordPress review and roundup pages using deterministic and rendered checks. |

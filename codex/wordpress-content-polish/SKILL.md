@@ -1,9 +1,9 @@
 ---
-name: pumpingchops-content-polish
-description: Improve PumpingChops review/guide copy and structure using AI as an editorial copilot. Use for intros, methodology, FAQs, tone cleanup, scannability, and trust consistency while preserving verified facts, product mappings, and affiliate link integrity.
+name: wordpress-content-polish
+description: Improve WordPress review/guide copy and structure using AI as an editorial copilot. Use for intros, methodology, FAQs, tone cleanup, scannability, and trust consistency while preserving verified facts, product mappings, and affiliate link integrity.
 ---
 
-# PumpingChops Content Polish
+# WordPress Content Polish
 
 Use this skill to improve page quality without inventing product facts.
 
@@ -55,7 +55,7 @@ Prioritize:
 
 Favor **surgical edits** over full rewrites.
 
-## Editing Standards (PumpingChops)
+## Editing Standards
 
 ### Voice / Tone
 Target:
@@ -142,4 +142,3 @@ Post-edit QA Checklist
 - Copy upgrade helper (batch patterns): `scripts/upgrade_top5_copy_blocks.py`
 - Review page standards: `docs/seo/review-page-template.md`
 - QA process doc: `docs/seo/page-qa-workflow.md`
-

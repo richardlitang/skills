@@ -1,11 +1,11 @@
 ---
-name: pumpingchops-page-qa
-description: Run PumpingChops page QA using the local deterministic audit script plus rendered-page review (Playwright) and synthesize findings into prioritized fixes and template/workflow learnings. Use for current or future pages, especially review/roundup posts.
+name: wordpress-page-qa
+description: Run WordPress page QA using a local deterministic audit script plus rendered-page review with Playwright, then synthesize findings into prioritized fixes and template/workflow learnings. Use for current or future pages, especially affiliate review and roundup posts.
 ---
 
-# PumpingChops Page QA
+# WordPress Page QA
 
-Use this skill when reviewing any PumpingChops page for:
+Use this skill when reviewing any WordPress content page for:
 - layout/UX regressions
 - affiliate link hygiene
 - trust/SEO structure quality
@@ -19,7 +19,7 @@ This skill is **report-first** by default. Do not auto-edit content unless the u
 - Then synthesize (P0/P1/P2 + template learnings)
 
 ## Inputs
-- `url` (preferred), e.g. `https://pumpingchops.com/best-submersible-sump-pumps/`
+- `url` (preferred), e.g. `https://example.com/best-product-category/`
 - optional `post_type` (`post`, `page`) for batch QA
 - optional `limit` for batch QA samples
 - mode: `quick` or `full` (default `full`)
@@ -62,12 +62,12 @@ Always call out if a finding is:
 - confirmed by Playwright only
 - confirmed by both
 
-## PumpingChops-Specific Checks to Emphasize
+## WordPress Affiliate Content Checks to Emphasize
 - affiliate CTA mismatch risk (duplicate destinations across product sections)
 - missing/incorrect `rel="nofollow sponsored noopener"`
 - placeholder product image overuse
 - placeholder image used as hero featured image (must not happen)
-- comparison table caption + `.pc-table-scroll` wrapper
+- comparison table caption and responsive table wrapper
 - CTA rows below data rows in comparison tables
 - redundant category row under breadcrumbs
 - title/H1/section mismatch (e.g., FAQ in title but no FAQ section)
@@ -109,5 +109,4 @@ Template / Workflow Learnings
 - Deterministic QA: `scripts/page_qa.py`
 - Review standards: `docs/seo/review-page-template.md`
 - QA workflow doc: `docs/seo/page-qa-workflow.md`
-- Rendering logic (for root-cause tracing): `tmp/pumpingchops-plugin/pumpingchops-content.php`
-
+- Rendering logic (for root-cause tracing): site-specific WordPress theme or plugin templates
