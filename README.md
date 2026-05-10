@@ -18,7 +18,7 @@ This repository is a curated copy of locally maintained user skills from `~/.cod
 
 The skills were inspired by recurring work patterns from personal projects, especially Android app development, WordPress content QA, SEO audits, code review, debugging, UX writing, and agent workflow design. They also draw on public documentation and commonly accepted practices from the relevant ecosystems, including Android and Jetpack Compose guidance, Google Search Central and Schema.org SEO references, Core Web Vitals guidance, WCAG accessibility guidance, and product-writing heuristics from UX writing practice.
 
-System-provided Codex skills were not copied into this repo. Buildpass skills or Buildpass-derived content are intentionally excluded.
+System-provided Codex skills were not copied into this repo.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for the source-of-inspiration summary.
 
@@ -64,7 +64,6 @@ Run the lightweight repository check:
 ```
 
 The validator checks that every skill directory has `SKILL.md`, YAML frontmatter fences, and required `name` and `description` fields.
-It also fails if Buildpass references are introduced under `codex/`.
 
 ## Skill Index
 

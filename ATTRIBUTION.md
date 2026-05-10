@@ -19,5 +19,3 @@ This repository packages locally maintained Codex skills from `~/.codex/skills`.
 ## Exclusions
 
 System-provided Codex skills were not copied into this repo.
-
-Buildpass skills, Buildpass prompts, Buildpass workflows, and anything derived from Buildpass are intentionally excluded. The validator fails if Buildpass references are introduced under `codex/`.

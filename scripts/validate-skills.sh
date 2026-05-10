@@ -11,11 +11,6 @@ fi
 
 failures=0
 
-if grep -R -I -n -i -E 'buildpass|build pass|build-pass' "$skills_dir"; then
-  echo "FAIL: Buildpass-derived content is not allowed in this repository" >&2
-  failures=$((failures + 1))
-fi
-
 while IFS= read -r -d '' skill_dir; do
   skill_name="$(basename "$skill_dir")"
   skill_file="$skill_dir/SKILL.md"
