@@ -1,5 +1,5 @@
 {
-  "ignore": ["dist", ".system", "*.mp4"],
+  "ignore": ["dist", ".system", "*.mp4", "*.png", "*.gif", "*.jpg", "*.jpeg", "*.webp", "*.pdf"],
   "targets": {
     "codex": {
       "dir": "~/.codex/skills",

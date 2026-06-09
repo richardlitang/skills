@@ -4,7 +4,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { applyTermMap, isIgnored, listFiles, expandHome } from './sync-skills.mjs';
+import { applyTermMap, isIgnored, listFiles, expandHome, parseCliArgs } from './sync-skills.mjs';
+
+// Track temp dirs for cleanup on exit.
+const tempDirs = [];
+process.on('exit', () => {
+  for (const d of tempDirs) fs.rmSync(d, { recursive: true, force: true });
+});
 
 test('applyTermMap applies pairs in order; caller puts more-specific pairs first', () => {
   const pairs = [['Claude Code', 'Codex'], ['Claude', 'Codex']];
@@ -24,6 +30,7 @@ test('isIgnored matches directory segments and *.ext patterns', () => {
 
 test('listFiles returns sorted relative paths, filtered by ignore', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync-'));
+  tempDirs.push(dir);
   fs.mkdirSync(path.join(dir, 'references'));
   fs.mkdirSync(path.join(dir, 'dist'));
   fs.writeFileSync(path.join(dir, 'SKILL.md'), 'x');
@@ -41,6 +48,7 @@ import { planTarget, applyPlan } from './sync-skills.mjs';
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'syncfix-'));
+  tempDirs.push(root);
   const source = path.join(root, 'source');
   const target = path.join(root, 'target');
   fs.mkdirSync(path.join(source, 'skill-a'), { recursive: true });
@@ -78,6 +86,40 @@ test('planTarget applies termPairs before comparing and respects unmanaged', () 
   assert.deepEqual(plan.modified, []);
   assert.deepEqual(plan.missing, []);
   assert.deepEqual(plan.unknownDirs, []);
+});
+
+test('parseCliArgs validates --target: missing value, unknown target, and valid target', () => {
+  const known = ['codex', 'claude', 'agents'];
+
+  // Missing value (next arg starts with --)
+  assert.deepEqual(
+    parseCliArgs(['--check', '--target', '--apply'], known),
+    { error: 'error: --target requires a value', exitCode: 2 }
+  );
+
+  // No value at all (--target is last arg)
+  assert.deepEqual(
+    parseCliArgs(['--check', '--target'], known),
+    { error: 'error: --target requires a value', exitCode: 2 }
+  );
+
+  // Unknown target name
+  assert.deepEqual(
+    parseCliArgs(['--check', '--target', 'nope'], known),
+    { error: 'error: unknown target "nope" (known: codex, claude, agents)', exitCode: 2 }
+  );
+
+  // Valid target
+  assert.deepEqual(
+    parseCliArgs(['--check', '--target', 'codex'], known),
+    { apply: false, check: true, targetFilter: 'codex' }
+  );
+
+  // No --target: targetFilter is null
+  assert.deepEqual(
+    parseCliArgs(['--check'], known),
+    { apply: false, check: true, targetFilter: null }
+  );
 });
 
 test('applyPlan writes transformed content and never deletes', () => {

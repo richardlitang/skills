@@ -62,6 +62,7 @@ export function planTarget({ name, sourceRoot, targetRoot, skills, exclude = [],
     const sourceDir = path.join(sourceRoot, skill);
     for (const rel of listFiles(sourceDir, ignore)) {
       const skillRel = `${skill}/${rel}`;
+      // Invariant: sync handles text files only; binary types must be in the manifest ignore list (utf8 round-trip corrupts them).
       const expected = applyTermMap(fs.readFileSync(path.join(sourceDir, rel), 'utf8'), termPairs);
       const targetFile = path.join(targetRoot, skill, rel);
       if (!fs.existsSync(targetFile)) missing.push(skillRel);
@@ -88,12 +89,34 @@ export function applyPlan(plan, { sourceRoot, targetRoot, termPairs = [] }) {
   }
 }
 
-function main() {
-  const args = process.argv.slice(2);
+// Returns { apply, check, targetFilter } or { error, exitCode } on invalid args.
+export function parseCliArgs(args, knownTargets) {
   const apply = args.includes('--apply');
   const check = args.includes('--check') || !apply;
-  const targetFilter = args.includes('--target') ? args[args.indexOf('--target') + 1] : null;
+  const targetIdx = args.indexOf('--target');
+  let targetFilter = null;
+  if (targetIdx !== -1) {
+    const val = args[targetIdx + 1];
+    if (!val || val.startsWith('--')) {
+      return { error: 'error: --target requires a value', exitCode: 2 };
+    }
+    if (!knownTargets.includes(val)) {
+      return { error: `error: unknown target "${val}" (known: ${knownTargets.join(', ')})`, exitCode: 2 };
+    }
+    targetFilter = val;
+  }
+  return { apply, check, targetFilter };
+}
+
+function main() {
   const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+  const knownTargets = Object.keys(manifest.targets);
+  const parsed = parseCliArgs(process.argv.slice(2), knownTargets);
+  if (parsed.error) {
+    process.stderr.write(parsed.error + '\n');
+    process.exit(parsed.exitCode);
+  }
+  const { apply, check, targetFilter } = parsed;
   let drift = false;
 
   for (const [name, t] of Object.entries(manifest.targets)) {
@@ -108,6 +131,9 @@ function main() {
     console.log(`[${name}] ${plan.ok.length} ok, ${plan.missing.length} missing, ${plan.modified.length} modified, unknown dirs: ${plan.unknownDirs.join(', ') || 'none'}`);
     for (const f of plan.missing) console.log(`  missing:  ${f}`);
     for (const f of plan.modified) console.log(`  modified: ${f}`);
+    if (apply && plan.unknownDirs.length) {
+      console.log(`  [warn] unknown dirs skipped (review manually): ${plan.unknownDirs.join(', ')}`);
+    }
     if (apply && (plan.missing.length || plan.modified.length)) {
       applyPlan(plan, opts);
       console.log(`  applied ${plan.missing.length + plan.modified.length} file(s)`);
