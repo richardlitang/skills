@@ -47,3 +47,7 @@ if [[ "$failures" -gt 0 ]]; then
 fi
 
 echo "skills ok"
+
+# Installed-skill drift sensor: curated repo is source of truth.
+echo "Checking installed skill dirs against manifest..."
+node "$(dirname "$0")/sync-skills.mjs" --check
