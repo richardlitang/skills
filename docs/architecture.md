@@ -36,7 +36,7 @@ flowchart LR
 drifts from its source, the validator fails and the weekly healthcheck notifies.
 Sync never deletes; unknown files are reported, not removed.
 
-## View 2: What happens Monday 09:30 — fully automatic, zero LLM, zero network
+## View 2: What happens Monday and Thursday 09:30 — fully automatic, zero LLM, zero network
 
 ```mermaid
 sequenceDiagram
@@ -48,7 +48,7 @@ sequenceDiagram
   participant S as SwiftBar icon
   participant U as You
 
-  L->>H: run (Mon 09:30)
+  L->>H: run (Mon + Thu 09:30)
   H->>P: parse local transcripts
   P-->>H: stats.json snapshot
   H->>T: compare last two snapshots
