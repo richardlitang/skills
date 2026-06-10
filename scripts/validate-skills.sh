@@ -51,3 +51,6 @@ echo "skills ok"
 # Installed-skill drift sensor: curated repo is source of truth.
 echo "Checking installed skill dirs against manifest..."
 node "$(dirname "$0")/sync-skills.mjs" --check
+
+echo "Checking ~/AGENTS.md is generated from ~/CLAUDE.md..."
+node "$(dirname "$0")/sync-global-config.mjs" --check
