@@ -93,6 +93,12 @@ node scripts/reflect/trend.mjs              # flag regressions vs TREND_TARGETS
 
 Snapshot data is private and stays in `~/.workflow/` — never commit it here.
 
+Unattended mode: `scripts/reflect/weekly-healthcheck.sh` runs snapshot + trend + all drift
+sensors, writes `~/.workflow/status.{txt,html}`, and notifies (macOS) only when something
+needs attention. Pair it with a launchd `StartCalendarInterval` job and the SwiftBar plugin
+`scripts/reflect/swiftbar-workflow-health.1d.sh` (symlink into the SwiftBar plugin dir) for
+a menu bar health icon. The retro itself stays human-approved by design.
+
 ## Skill Index
 
 | Skill | Purpose |
