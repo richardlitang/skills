@@ -87,7 +87,7 @@ node scripts/sync-global-config.mjs --check | --apply
 Weekly (or after a rough session), run the `workflow-retro` skill from any agent. Plumbing:
 
 ```bash
-scripts/reflect/snapshot-workflow-stats.sh  # pixel-local metrics -> ~/.workflow/snapshots/
+scripts/reflect/snapshot-workflow-stats.sh  # paxel-local metrics -> ~/.workflow/snapshots/
 node scripts/reflect/trend.mjs              # flag regressions vs TREND_TARGETS
 ```
 

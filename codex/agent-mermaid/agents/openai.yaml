@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Mermaid"
+  short_description: "Create evidence-backed Mermaid architecture diagrams from code."
+  default_prompt: "Create an evidence-backed Mermaid diagram package for this codebase, separating explicit, inferred, and unknown relationships."
