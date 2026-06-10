@@ -36,7 +36,7 @@ test('flagFindings flags target violations with evidence values', () => {
 
 test('flagFindings returns empty for a healthy window', () => {
   const healthy = {
-    tools_in_window: 1000, error_rate_per_100_tools: 3,
+    tools_in_window: 1000, error_rate_per_100_tools: 1,
     test_runs_per_100_tools: 2.5, files_hammered_delta: 0,
     error_recovery_ratio: 0.9, planning_ratio_explore_to_doing: 1.2
   };
@@ -45,12 +45,12 @@ test('flagFindings returns empty for a healthy window', () => {
 
 test('flagFindings does not flag metrics that are exactly at the target boundary', () => {
   const atBoundary = {
-    tools_in_window: 500, error_rate_per_100_tools: 8,
-    test_runs_per_100_tools: 1, files_hammered_delta: 0,
-    error_recovery_ratio: 0.7, planning_ratio_explore_to_doing: 0.5
+    tools_in_window: 500, error_rate_per_100_tools: 2,
+    test_runs_per_100_tools: 1.5, files_hammered_delta: 0,
+    error_recovery_ratio: 0.7, planning_ratio_explore_to_doing: 0.6
   };
   const flags = flagFindings(atBoundary, TREND_TARGETS);
   const keys = flags.map((f) => f.metric);
-  assert.ok(!keys.includes('error_rate_per_100_tools'), 'error_rate at max=8 should not flag');
-  assert.ok(!keys.includes('test_runs_per_100_tools'), 'test_runs at min=1 should not flag');
+  assert.ok(!keys.includes('error_rate_per_100_tools'), 'error_rate at max=2 should not flag');
+  assert.ok(!keys.includes('test_runs_per_100_tools'), 'test_runs at min=1.5 should not flag');
 });

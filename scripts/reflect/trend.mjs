@@ -7,13 +7,16 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Targets are policy, kept in one named map. Tune with evidence, not vibes.
+// Targets are policy, kept in one named map. Calibrated to the 2026-06-10
+// baseline snapshot (test runs 1.9/100, planning 0.74, hammered 0 total).
+// Caveat: paxel undercounts codex-source errors (codex string outputs carry
+// no success flag), so error metrics only bind on claude-source-heavy windows.
 export const TREND_TARGETS = {
-  error_rate_per_100_tools: { max: 8, desc: 'tool errors per 100 calls in window' },
-  test_runs_per_100_tools: { min: 1, desc: 'shell test runs per 100 tool calls in window' },
+  error_rate_per_100_tools: { max: 2, desc: 'tool errors per 100 calls in window' },
+  test_runs_per_100_tools: { min: 1.5, desc: 'shell test runs per 100 tool calls in window' },
   files_hammered_delta: { max: 0, desc: 'new files edited >15x in window' },
   error_recovery_ratio: { min: 0.7, desc: 'cumulative recovered/total tool errors' },
-  planning_ratio_explore_to_doing: { min: 0.5, desc: 'cumulative explore:produce ratio' }
+  planning_ratio_explore_to_doing: { min: 0.6, desc: 'cumulative explore:produce ratio' }
 };
 
 export function windowMetrics(prev, curr) {
