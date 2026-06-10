@@ -20,6 +20,7 @@ export function windowMetrics(prev, curr) {
   const dTools = curr.volume.tool_calls_total - prev.volume.tool_calls_total;
   const dErrors = curr.behavior.tool_errors - prev.behavior.tool_errors;
   const dTests = curr.behavior.shell_test_runs - prev.behavior.shell_test_runs;
+  // Negative values mean corpus shrinkage; they are reported but never flagged.
   const rate = (n) => (dTools > 0 ? Math.round((n / dTools) * 100 * 100) / 100 : 0);
   return {
     tools_in_window: dTools,
@@ -48,6 +49,7 @@ export function flagFindings(metrics, targets = TREND_TARGETS) {
 
 function main() {
   const root = process.argv[2] || path.join(os.homedir(), '.workflow', 'snapshots');
+  if (!fs.existsSync(root)) { console.log(`No snapshots dir at ${root}. Run snapshot-workflow-stats.sh first.`); return; }
   const days = fs.readdirSync(root).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
   if (days.length < 2) {
     console.log(`Need 2+ snapshots in ${root}; found ${days.length}. Run snapshot-workflow-stats.sh again later.`);

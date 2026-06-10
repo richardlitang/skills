@@ -42,3 +42,15 @@ test('flagFindings returns empty for a healthy window', () => {
   };
   assert.deepEqual(flagFindings(healthy, TREND_TARGETS), []);
 });
+
+test('flagFindings does not flag metrics that are exactly at the target boundary', () => {
+  const atBoundary = {
+    tools_in_window: 500, error_rate_per_100_tools: 8,
+    test_runs_per_100_tools: 1, files_hammered_delta: 0,
+    error_recovery_ratio: 0.7, planning_ratio_explore_to_doing: 0.5
+  };
+  const flags = flagFindings(atBoundary, TREND_TARGETS);
+  const keys = flags.map((f) => f.metric);
+  assert.ok(!keys.includes('error_rate_per_100_tools'), 'error_rate at max=8 should not flag');
+  assert.ok(!keys.includes('test_runs_per_100_tools'), 'test_runs at min=1 should not flag');
+});
