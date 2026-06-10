@@ -10,7 +10,7 @@
     },
     "claude": {
       "dir": "~/.claude/skills",
-      "skills": ["android-build", "auditing-flows", "brainstorming", "compose-ui", "localizing-android", "planning-features", "reviewing-code", "systematic-debugging", "tdd-android", "verifying-completion"],
+      "skills": ["android-build", "auditing-flows", "brainstorming", "compose-ui", "localizing-android", "planning-features", "reviewing-code", "systematic-debugging", "tdd-android", "verifying-completion", "workflow-retro"],
       "unmanaged": [],
       "termPairs": []
     },
