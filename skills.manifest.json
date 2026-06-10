@@ -1,24 +1,76 @@
 {
-  "ignore": ["dist", ".system", "*.mp4", "*.png", "*.gif", "*.jpg", "*.jpeg", "*.webp", "*.pdf"],
+  "ignore": [
+    "dist",
+    ".system",
+    "*.mp4",
+    "*.png",
+    "*.gif",
+    "*.jpg",
+    "*.jpeg",
+    "*.webp",
+    "*.pdf"
+  ],
   "targets": {
     "codex": {
       "dir": "~/.codex/skills",
       "skills": "all",
-      "exclude": ["wordpress-content-polish", "wordpress-guides-qa", "wordpress-page-qa"],
-      "unmanaged": [".system", "pumpingchops-content-polish", "pumpingchops-guides-qa", "pumpingchops-page-qa"],
+      "exclude": [
+        "wordpress-content-polish",
+        "wordpress-guides-qa",
+        "wordpress-page-qa"
+      ],
+      "unmanaged": [
+        ".system",
+        "pumpingchops-content-polish",
+        "pumpingchops-guides-qa",
+        "pumpingchops-page-qa"
+      ],
       "termPairs": []
     },
     "claude": {
       "dir": "~/.claude/skills",
-      "skills": ["android-build", "auditing-flows", "brainstorming", "compose-ui", "localizing-android", "planning-features", "reviewing-code", "systematic-debugging", "tdd-android", "verifying-completion", "workflow-retro"],
+      "skills": [
+        "agent-mermaid",
+        "android-build",
+        "auditing-flows",
+        "brainstorming",
+        "compose-ui",
+        "localizing-android",
+        "planning-features",
+        "reviewing-code",
+        "systematic-debugging",
+        "tdd-android",
+        "verifying-completion",
+        "workflow-retro"
+      ],
       "unmanaged": [],
       "termPairs": []
     },
     "agents": {
       "dir": "~/.agents/skills",
-      "skills": ["android-build", "auditing-flows", "brainstorming", "compose-ui", "localizing-android", "planning-features", "reviewing-code", "systematic-debugging", "tdd-android", "verifying-completion"],
+      "skills": [
+        "android-build",
+        "auditing-flows",
+        "brainstorming",
+        "compose-ui",
+        "localizing-android",
+        "planning-features",
+        "reviewing-code",
+        "systematic-debugging",
+        "tdd-android",
+        "verifying-completion"
+      ],
       "unmanaged": [],
-      "termPairs": [["Claude Code", "Codex"], ["Claude", "Codex"]]
+      "termPairs": [
+        [
+          "Claude Code",
+          "Codex"
+        ],
+        [
+          "Claude",
+          "Codex"
+        ]
+      ]
     }
   }
 }
