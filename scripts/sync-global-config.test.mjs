@@ -12,7 +12,7 @@ test('renderAgentsMd prepends generated header and applies ordered substitutions
   ].join('\n');
   const out = renderAgentsMd(src);
   assert.match(out, /^<!-- GENERATED from ~\/CLAUDE\.md/);
-  assert.doesNotMatch(out, /Claude Opus/);
+  assert.doesNotMatch(out, /noreply@anthropic\.com/);
   assert.match(out, /Co-Authored-By` trailer naming the agent/);
   assert.match(out, /AGENTS\.md\/CLAUDE\.md or the agent's config directory/);
   assert.match(out, /context-compaction command \(such as `\/compact`\)/);

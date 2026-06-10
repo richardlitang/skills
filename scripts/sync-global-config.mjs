@@ -33,7 +33,15 @@ export function renderAgentsMd(source) {
 }
 
 function main() {
-  const apply = process.argv.includes('--apply');
+  const args = process.argv.slice(2);
+  const known = new Set(['--check', '--apply']);
+  for (const arg of args) {
+    if (!known.has(arg)) {
+      process.stderr.write(`error: unknown argument "${arg}" (expected --check or --apply)\n`);
+      process.exit(2);
+    }
+  }
+  const apply = args.includes('--apply');
   const expected = renderAgentsMd(fs.readFileSync(SOURCE, 'utf8'));
   const current = fs.existsSync(DEST) ? fs.readFileSync(DEST, 'utf8') : '';
   if (expected === current) {
