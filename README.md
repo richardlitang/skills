@@ -7,6 +7,7 @@ These skills are compact operating guides for coding agents. Each skill keeps th
 ## Highlights
 
 - **Engineering workflow**: `systematic-debugging`, `verifying-completion`, `reviewing-code`, `planning-features`, `finding-duplicate-functions`
+- **Architecture docs**: `agent-mermaid` for evidence-backed Mermaid diagrams from code.
 - **Android**: `android-build`, `compose-ui`, `localizing-android`, `tdd-android`
 - **Product and interface work**: `frontend-design`, `interface-design`, `ux-writing-skill`, `brainstorming`, `grill-me`
 - **SEO and GEO**: `seo`, `seo-audit`, `seo-page`, `seo-technical`, `seo-schema`, `seo-content`, `seo-geo`, and focused helpers for images, sitemaps, hreflang, programmatic SEO, plans, and competitor pages
@@ -65,10 +66,38 @@ Run the lightweight repository check:
 
 The validator checks that every skill directory has `SKILL.md`, YAML frontmatter fences, and required `name` and `description` fields.
 
+## Sync (installed dirs are generated)
+
+`~/.codex/skills`, `~/.claude/skills`, and `~/.agents/skills` are build artifacts of this
+repo, driven by `skills.manifest.json`. Never hand-edit them.
+
+```bash
+node scripts/sync-skills.mjs --check   # drift sensor (also run by validate-skills.sh)
+node scripts/sync-skills.mjs --apply   # install/update all targets
+```
+
+`~/AGENTS.md` is generated from `~/CLAUDE.md` the same way:
+
+```bash
+node scripts/sync-global-config.mjs --check | --apply
+```
+
+## Reflect (workflow self-improvement)
+
+Weekly (or after a rough session), run the `workflow-retro` skill from any agent. Plumbing:
+
+```bash
+scripts/reflect/snapshot-workflow-stats.sh  # pixel-local metrics -> ~/.workflow/snapshots/
+node scripts/reflect/trend.mjs              # flag regressions vs TREND_TARGETS
+```
+
+Snapshot data is private and stays in `~/.workflow/` — never commit it here.
+
 ## Skill Index
 
 | Skill | Purpose |
 | --- | --- |
+| `agent-mermaid` | Create evidence-backed Mermaid architecture diagrams from code. |
 | `android-build` | Android build optimization, Gradle troubleshooting, and compile verification. |
 | `auditing-flows` | Trace user journeys, logic paths, dead ends, and race-condition risks. |
 | `brainstorming` | Clarify feature ideas and design direction through focused questioning. |
