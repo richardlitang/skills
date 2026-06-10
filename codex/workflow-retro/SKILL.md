@@ -26,7 +26,7 @@ Turn recurring workflow failures into harness improvements through an evidence -
 6. Record the retro in `~/.workflow/retros/YYYY-MM-DD.md`: flags seen, candidates,
    decisions (approved/dismissed + why). Dismissals need a reason so they stay dismissed.
 7. Approved changes are normal edits in `~/code/personal/skills` (then run
-   `node scripts/sync-skills.mjs --apply`) or in the named repo. Never hand-edit
+   `node ~/code/personal/skills/scripts/sync-skills.mjs --apply`) or in the named repo. Never hand-edit
    installed skill dirs or ~/AGENTS.md.
 
 ## Rules
